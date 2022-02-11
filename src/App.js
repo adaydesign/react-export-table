@@ -91,7 +91,7 @@ const PrintButton = ({ options }) => {
     // doc.save('autoprint.pdf');
     doc.autoPrint();
     //This is a key for printing
-    doc.output('pdfobjectnewwindow');
+    doc.output("dataurlnewwindow");
   }
 
   return (

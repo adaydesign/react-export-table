@@ -102,7 +102,7 @@ const PrintButton = ({ options }) => {
   return (
     <HStack>
       <Button colorScheme='teal' onClick={e => printHandle('print')}>Print</Button>
-      <Button colorScheme='blue' onClick={e => printHandle('save')}>Save</Button>
+      <Button colorScheme='blue' onClick={e => printHandle('save')}>Download</Button>
     </HStack>
   )
 }

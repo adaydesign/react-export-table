@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { ChakraProvider, Text, Heading, Flex, Button, Spacer } from '@chakra-ui/react'
+import { ChakraProvider, Text, Heading, Flex, Button, Spacer, HStack } from '@chakra-ui/react'
 import { ChakraUITable } from 'react-chakra-ui-table'
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
@@ -74,7 +74,7 @@ const TodoListTable = () => {
 
 const PrintButton = ({ options }) => {
 
-  const printHandle = () => {
+  const printHandle = (expType) => {
     const doc = new jsPDF()
     var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
 
@@ -88,14 +88,22 @@ const PrintButton = ({ options }) => {
       html: '#my-table',
       margin: { top: 26 }
     })
-    // doc.save('autoprint.pdf');
-    doc.autoPrint();
-    //This is a key for printing
-    doc.output("dataurlnewwindow");
+
+    if (expType === 'print') {
+      doc.autoPrint();
+      //This is a key for printing
+      doc.output("dataurlnewwindow");
+    } else if (expType === 'save') {
+      doc.save('autoprint.pdf');
+    }
+
   }
 
   return (
-    <Button colorScheme='teal' onClick={printHandle}>Print</Button>
+    <HStack>
+      <Button colorScheme='teal' onClick={e => printHandle('print')}>Print</Button>
+      <Button colorScheme='blue' onClick={e => printHandle('save')}>Save</Button>
+    </HStack>
   )
 }
 
